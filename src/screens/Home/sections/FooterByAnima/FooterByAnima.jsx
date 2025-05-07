@@ -11,15 +11,7 @@ export const FooterByAnima = () => {
     { title: "Contact Us" },
   ];
 
-  const contactInfo = [
-    { icon: <MailIcon className="w-6 h-6" />, text: "info@sg5.ai" },
-    { icon: <PhoneIcon className="w-6 h-6" />, text: "+1.469.506.9538" },
-    {
-      icon: <MapPinIcon className="w-6 h-6" />,
-      text: "2106 Brentfield Drive, Wylie, 75098, Texas, USA",
-      multiline: true,
-    },
-  ];
+ 
 
   const socialLinks = [
     { name: "LinkedIn" },
@@ -29,89 +21,77 @@ export const FooterByAnima = () => {
 
   return (
     <footer className="flex flex-col gap-10 lg:gap-32 w-full items-center p-10 lg:p-24 bg-transparent [background:linear-gradient(180deg,rgba(0,0,0,1)_0%,rgba(119,140,183,1)_100%)]">
-      <div className="flex flex-col lg:flex-row w-full lg:justify-between gap-10">
-        <div className="w-ful lg:w-1/3">
-          <img
-            className="w-[135px] h-[76px] object-cover"
-            alt="SG5.ai logo"
-            src="/hh-sg5branding-new-01-2.png"
-          />
-        </div>
-        <div className="w-full [font-family:'Poppins',Helvetica] font-normal text-white text-xl tracking-[-0.50px] leading-8">
-          At SG5.ai, we specialize in delivering innovative AI, ML, data
-          engineering, blockchain, and bespoke software solutions that drive
-          business success.
-        </div>
+    <div className="flex flex-col lg:flex-row w-full justify-between gap-10 lg:gap-32">
+  {/* Logo and Description */}
+  <div className="w-full lg:w-1/3 flex flex-col gap-4">
+    <img
+      className="w-[135px] h-[76px] object-cover"
+      alt="SG5.ai logo"
+      src="/hh-sg5branding-new-01-2.png"
+    />
+    <div className="[font-family:'Poppins',Helvetica] font-normal text-white text-xl tracking-[-0.50px] leading-8">
+      At SG5.ai, we specialize in delivering innovative AI, ML, data
+      engineering, blockchain, and bespoke software solutions that drive
+      business success.
+    </div>
+  </div>
 
-      </div>
-
-      <div className="flex flex-col gap-10 lg:flex-row w-full pb-0 px-0 relative">
-        <div className="flex flex-col gap-5 h-full w-full lg:w-1/3">
-          {/* Navigation Items */}
-          {navigationItems.map((item, index) => (
-            <div
-              key={item.title}
-              className="inline-flex flex-col items-start px-0 cursor-pointer"
-              style={{ top: `${index * 60}px` }}
-            >
-              <div className="[font-family:'Poppins',Helvetica] font-medium text-[37.7px] tracking-[-0.60px] leading-[44px] whitespace-nowrap relative w-fit mt-[-1.00px] text-white">
-                {item.title}
-              </div>
-            </div>
-          ))}
+  {/* Navigation + Social Links */}
+  <div className="flex flex-col lg:flex-row w-full justify-between gap-10">
+    {/* Navigation Items */}
+    <div className="flex flex-col gap-5 ml-36">
+      {navigationItems.map((item) => (
+        <div
+          key={item.title}
+          className="cursor-pointer [font-family:'Poppins',Helvetica] font-medium text-[37.7px] tracking-[-0.60px] leading-[44px] whitespace-nowrap text-white"
+        >
+          {item.title}
         </div>
+      ))}
+    </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          <div className="flex flex-col gap-5">
-            {contactInfo.map((item, index) => (
-              <div
-                key={index}
-                className="flex items-start gap-3 items-center"
-                style={{ top: `${index * 59}px` }}
-              >
-                <div className="">{item.icon}</div>
-                <div className="inline-flex flex-col items-start">
-                  <div className="[font-family:'Inter',Helvetica] font-normal text-[19.5px] tracking-[0] leading-[30px] relative w-fit mt-[-1.00px] text-white">
-                    {item.multiline ? (
-                      <>
-                        {item.text.split(", ").slice(0, -1).join(", ")}, <br />
-                        {item.text.split(", ").slice(-1)[0]}
-                      </>
-                    ) : (
-                      item.text
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
+    {/* Social Links */}
+    <div className="flex flex-col gap-5 ml-6">
+      {socialLinks.map((link) => (
+        <div key={link.name} className="flex items-center gap-3">
+          <div className="[font-family:'Inter',Helvetica] font-normal text-[19.5px] text-white">
+            {link.name}
           </div>
-
-
-          {/* Social Links */}
-          <div className="flex flex-col gap-5">
-            {socialLinks.map((link, index) => (
-              <div
-                key={link.name}
-                className="gap-3 flex items-start"
-                style={{ top: `${index * 58 - 9 + (index === 2 ? 9 : 0)}px` }}
-              >
-                <div className="[font-family:'Inter',Helvetica] font-normal text-[19.5px] tracking-[0] leading-[30px] whitespace-nowrap relative w-fit mt-[-1.00px] text-white">
-                  {link.name}
-                </div>
-                {link?.platform === 'fb' && <Badge className="flex items-center justify-centerpx-3 py-1 rounded-2xl [background:linear-gradient(90deg,rgba(51,194,255,1)_0%,rgba(0,119,255,1)_100%)]">
-                  <span className="relative w-fit mt-[-1.00px] [font-family:'Inter',Helvetica] font-medium text-white text-xs tracking-[0] leading-5 whitespace-nowrap">
-                    New
-                  </span>
-                </Badge>}
-              </div>
-            ))}
-          </div>
+          {link.platform === "fb" && (
+            <Badge className="px-3 py-1 rounded-2xl [background:linear-gradient(90deg,rgba(51,194,255,1)_0%,rgba(0,119,255,1)_100%)]">
+              <span className="[font-family:'Inter',Helvetica] font-medium text-white text-xs">
+                New
+              </span>
+            </Badge>
+          )}
         </div>
+      ))}
+    </div>
+  </div>
+</div>
 
-      </div>
-        <div className="text-start w-full [font-family:'DM_Sans',Helvetica] font-normal text-white text-base tracking-[-0.16px] leading-[20.8px] whitespace-nowrap">
-          © 2025 All rights reserved
-        </div>
+<div className="flex justify-between w-full items-center text-white text-base [font-family:'DM_Sans',Helvetica] font-normal tracking-[-0.16px] leading-[20.8px]">
+  <div className="whitespace-nowrap">© 2025 All rights reserved</div>
+  <div className="flex items-center gap-1 whitespace-nowrap">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-4 w-4 text-white"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"
+      />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+    </svg>
+    Dallas, Texas, USA
+  </div>
+</div>
+
     </footer>
   );
 };

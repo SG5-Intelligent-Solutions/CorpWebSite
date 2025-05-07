@@ -135,12 +135,16 @@ export const Home = () => {
       <section className="relative w-full mt-20">
         <div className="flex flex=col lg:flex-row justify-between">
           <div className="relative w-full lg:w-1/2 h-[636px]">
-            <img
-              className="w-full h-full object-contain"
-              alt="Digital hand"
-              src="/digital-hand-spreading-hand-circular-grid-wave-with-binary-code-.png"
-            />
-
+           
+            <video
+    className="w-full h-full object-contain"
+    autoPlay
+    muted
+    loop
+    playsInline
+  >
+    <source src="/Hand.mp4" type="video/mp4" />
+  </video>
             <div className="absolute w-[514px] h-[514px] top-0 right-0 bg-[url(/vector-4.svg)] bg-[100%_100%]">
               <div className="relative w-[512px] h-[512px] top-px left-px bg-[url(/vector-5.svg)] bg-[100%_100%]">
                 <img
