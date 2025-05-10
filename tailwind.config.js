@@ -5,6 +5,18 @@ module.exports = {
     "components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1536px",
+      "3xl": "1800px",
+      "4xl": "2100px",
+      "5xl": "3000px",
+      "6xl": "4600px", 
+    },
+
     extend: {
       colors: {
         border: "hsl(var(--border))",
@@ -51,10 +63,11 @@ module.exports = {
           "ui-sans-serif",
           "system-ui",
           "sans-serif",
-          '"Apple Color Emoji"',
-          '"Segoe UI Emoji"',
-          '"Segoe UI Symbol"',
-          '"Noto Color Emoji"',
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol",
+          "Noto Color Emoji",
+          "Bebas Neue",
         ],
       },
       keyframes: {
