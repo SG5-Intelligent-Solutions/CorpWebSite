@@ -21,7 +21,7 @@ const DigitalHandSection = ({
   custom development, we provide tailored services that meet the 
   evolving needs of diverse industries.`,
 }) => {
-  console.log(window.innerWidth)
+  console.log(window.innerWidth);
   return (
     <section className="relative w-full mt-10 sm:mt-16 md:mt-20 px-4 sm:px-6 md:px-8 overflow-hidden">
       <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-8 md:gap-12">
@@ -67,11 +67,12 @@ const DigitalHandSection = ({
           </div>
         </div>
 
-        <div className="flex-1 flex flex-col gap-6 sm:gap-8 md:gap-10 w-full lg:w-1/2  order-1 lg:order-2">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl 2xl:text-6xl 3xl:text-7xl 4xl:text-8xl  6xl:text-[10rem] leading-tight">
+        <div className="flex-1 flex flex-col gap-6 sm:gap-8 md:gap-10  2xl:gap-18 3xl:gap-24 4xl:gap-32 w-full lg:w-1/2  order-1 lg:order-2">
+          <h1 className=" bg-gradient-to-r from-[#A1C0FF] to-white bg-clip-text text-transparent text-3xl sm:text-4xl md:text-5xl 2xl:text-6xl 3xl:text-7xl 
+          4xl:text-8xl 5xl:text-9xl 6xl:text-[10rem] leading-tight">
             {heading}
           </h1>
-          <p className="text-white text-base sm:text-lg md:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl">
+          <p className="text-white font-poppins font-normal text-base sm:text-lg md:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl">
             {description}
           </p>
         </div>

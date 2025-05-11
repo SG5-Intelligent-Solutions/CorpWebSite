@@ -23,12 +23,12 @@ const HeroSection = ({
 
       {/* Text Content - Left Side */}
       <div className="relative z-10 w-full mt-20 md:mt-32 lg:mt-40 xl:mt-48 mb-12 md:mb-0 md:pr-8">
-        <h4 className="font-normal text-[#a1c0ff] font-poppins mb-4 md:mb-6 text-lg md:text-xl lg:text-2xl">
+        <h4 className="font-normal text-[#a1c0ff] font-poppins mb-4 md:mb-6 text-lg md:text-xl lg:text-2xl 2xl:text-3xl  3xl:text-4xl 4xl:text-5xl 5xl:text-6xl 6xl:text-7xl">
           {title || ""}
         </h4>
         <div
-          className="font-bebas-neue bg-gradient-to-b from-white to-[#A1C0FF] bg-clip-text text-transparent  
-          font-bold text-4xl md:text-5xl lg:text-4xl 2xl:text-5xl 3xl:text-7xl
+          className="font-bebas bg-gradient-to-b from-white to-[#A1C0FF] bg-clip-text text-transparent  
+          font-bold 2xl:text-7xl 3xl:text-7xl 4xl:text-8xl 5xl:text-9xl 6xl:text-[12rem]
           leading-[1.1] md:leading-[1.2] uppercase mb-8 md:mb-12"
         >
           {/* {heading?.split("\n")?.map((line, index) => (
@@ -41,7 +41,7 @@ const HeroSection = ({
         </div>
         <div className="rounded-[20px] md:w-2/3">
           <p className="font-poppins font-normal text-white text-base md:text-lg lg:text-xl 
-           3xl:text-4xl leading-relaxed md:leading-loose">
+           3xl:text-4xl 4xl:text-5xl 5xl:text-6xl 6xl:text-7xl leading-relaxed md:leading-loose">
             {description || ""}
           </p>
         </div>

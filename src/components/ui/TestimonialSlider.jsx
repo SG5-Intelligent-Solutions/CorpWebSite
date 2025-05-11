@@ -1,113 +1,118 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 
 export default function TestimonialSlider() {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [isTransitioning, setIsTransitioning] = useState(false)
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const testimonials = [
     // First row
     {
       id: 1,
       rating: 5,
-      text:
-        'Cyntch has been an amazing investment partner for me. Their investment management services are easy to use.',
-      author: '@Yury',
+      text: "Cyntch has been an amazing investment partner for me. Their investment management services are easy to use.",
+      author: "@Yury",
     },
     {
       id: 2,
       rating: 5,
-      text:
-        'I never realized how much money I was wasting on unnecessary expenses until I started using Cyntch.',
-      author: '@Aryan',
+      text: "I never realized how much money I was wasting on unnecessary expenses until I started using Cyntch.",
+      author: "@Aryan",
     },
     {
       id: 3,
       rating: 5,
-      text:
-        'Such a clean, beautiful template and so easy to customise. Would highly recommend.',
-      author: '@Arim',
+      text: "Such a clean, beautiful template and so easy to customise. Would highly recommend.",
+      author: "@Arim",
     },
     // Second row
     {
       id: 4,
       rating: 5,
-      text:
-        'Cyntch has been an amazing investment partner for me. Their investment management services are easy to use.',
-      author: '@Aryan',
+      text: "Cyntch has been an amazing investment partner for me. Their investment management services are easy to use.",
+      author: "@Aryan",
     },
     {
       id: 5,
       rating: 5,
-      text:
-        'Such a clean, beautiful template and so easy to customise. Would highly recommend.',
-      author: '@Arim',
+      text: "Such a clean, beautiful template and so easy to customise. Would highly recommend.",
+      author: "@Arim",
     },
     {
       id: 6,
       rating: 4,
-      text:
-        "I accidentally discovered this while looking for something else, and I'm glad I did!",
-      author: '@Sam',
+      text: "I accidentally discovered this while looking for something else, and I'm glad I did!",
+      author: "@Sam",
     },
     {
       id: 7,
       rating: 5,
-      text:
-        'I never realized how much money I was wasting on unnecessary expenses until I started using Cyntch.',
-      author: '@Aryan',
+      text: "I never realized how much money I was wasting on unnecessary expenses until I started using Cyntch.",
+      author: "@Aryan",
     },
     {
       id: 8,
       rating: 5,
-      text:
-        'Such a clean, beautiful template and so easy to customise. Would highly recommend.',
-      author: '@Arim',
+      text: "Such a clean, beautiful template and so easy to customise. Would highly recommend.",
+      author: "@Arim",
     },
     {
       id: 9,
       rating: 4,
-      text:
-        "I accidentally discovered this while looking for something else, and I'm glad I did!",
-      author: '@Sam',
+      text: "I accidentally discovered this while looking for something else, and I'm glad I did!",
+      author: "@Sam",
     },
     {
       id: 10,
       rating: 5,
-      text:
-        'I never realized how much money I was wasting on unnecessary expenses until I started using Cyntch.',
-      author: '@Aryan',
+      text: "I never realized how much money I was wasting on unnecessary expenses until I started using Cyntch.",
+      author: "@Aryan",
     },
-  ]
+  ];
 
   // Divide testimonials into rows
-  const firstRow = testimonials.slice(0, 5)
-  const secondRow = testimonials.slice(4)
+  const firstRow = testimonials.slice(0, 5);
+  const secondRow = testimonials.slice(4);
 
   // Auto-slide functionality
   useEffect(() => {
     const interval = setInterval(() => {
-      setIsTransitioning(true)
+      setIsTransitioning(true);
       setActiveIndex(
-        (prevIndex) => (prevIndex + 1) % Math.ceil(testimonials.length / 3),
-      )
+        (prevIndex) => (prevIndex + 1) % Math.ceil(testimonials.length / 3)
+      );
 
       // Reset transition state after animation completes
       setTimeout(() => {
-        setIsTransitioning(false)
-      }, 500)
-    }, 4000)
+        setIsTransitioning(false);
+      }, 500);
+    }, 4000);
 
-    return () => clearInterval(interval)
-  }, [testimonials.length])
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
 
   // Render star rating
   const renderStars = (rating) => {
     return (
-      <div className="flex mb-2">
-        {[...Array(5)].map((_, i) => (
+      <div
+        className="flex  mb-2 sm:mb-2 md:mb-3 
+      lg:mb-4 xl:mb-5 
+      2xl:mb-6 3xl:mb-7 
+      4xl:mb-8 5xl:mb-10 6xl:mb-12"
+      >
+        {[...Array(5)]?.map((_, i) => (
           <svg
             key={i}
-            className={`w-4 h-4 ${i < rating ? 'text-white' : 'text-gray-500'}`}
+            className={`w-4 h-4
+            sm:w-5 sm:h-5
+            md:w-5 md:h-5
+            lg:w-6 lg:h-6
+            xl:w-6 xl:h-6
+            2xl:w-7 2xl:h-7
+            3xl:w-8 3xl:h-8
+            4xl:w-9 4xl:h-9
+            5xl:w-10 5xl:h-10
+            6xl:w-12 6xl:h-12
+            ${i < rating ? "text-white" : "text-gray-500"}`}
             fill="currentColor"
             viewBox="0 0 20 20"
           >
@@ -115,8 +120,8 @@ export default function TestimonialSlider() {
           </svg>
         ))}
       </div>
-    )
-  }
+    );
+  };
 
   // Create a card component for reuse
   const TestimonialCard = ({ testimonial, isPartial = false }) => {
@@ -125,37 +130,46 @@ export default function TestimonialSlider() {
         <div className="w-1/12 px-1 opacity-30">
           <div className="border border-gray-800 rounded-lg p-4 h-full bg-black"></div>
         </div>
-      )
+      );
     }
 
     return testimonial ? (
-      <div className={`${isPartial ? 'w-1/12 opacity-30' : 'w-1/3'} px-1`}>
-        <div className="border border-gray-800 rounded-lg p-4 h-full bg-black">
-          {renderStars(testimonial.rating)}
-          <p className="text-sm mb-2">{testimonial.text}</p>
-          <p className="text-sm text-gray-400">{testimonial.author}</p>
+      <div className={`${isPartial ? "w-1/12 opacity-30" : "w-full"} px-1`}>
+        <div className="border border-gray-800 rounded-xl p-8 h-full bg-black">
+          {renderStars(testimonial?.rating)}
+          <p
+            className="text-sm font-normal font-poppins md:text-base 2xl:text-sm 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl mb-2 sm:mb-2 md:mb-3 
+      lg:mb-4 xl:mb-5 
+      2xl:mb-6 3xl:mb-7 
+      4xl:mb-8 5xl:mb-10 6xl:mb-12"
+          >
+            {testimonial?.text}
+          </p>
+          <p className="text-sm  3xl:text-3xl 4xl:text-4xl 5xl:text-5xl  text-gray-400">
+            {testimonial?.author}
+          </p>
         </div>
       </div>
-    ) : null
-  }
+    ) : null;
+  };
 
   // Calculate which testimonials to show based on active index
   const getVisibleCards = (row, index) => {
-    const startIdx = index * 3
-    return row.slice(startIdx, startIdx + 3)
-  }
+    const startIdx = index * 3;
+    return row.slice(startIdx, startIdx + 3);
+  };
 
-  const visibleFirstRow = getVisibleCards(firstRow, 0)
-  const visibleSecondRow = getVisibleCards(secondRow, activeIndex)
+  const visibleFirstRow = getVisibleCards(firstRow, 0);
+  const visibleSecondRow = getVisibleCards(secondRow, activeIndex);
 
   return (
-    <div className="w-full bg-black text-white py-8 container mx-auto">
+    <div className="w-full bg-black text-white py-8  mx-auto">
       {/* First Row */}
-      <div className="mb-6">
+      <div className="mb-6  w-full">
         <div className="flex items-stretch px-4 overflow-hidden">
           <TestimonialCard isPartial={true} />
 
-          {visibleFirstRow.map((testimonial) => (
+          {visibleFirstRow?.map((testimonial) => (
             <TestimonialCard key={testimonial.id} testimonial={testimonial} />
           ))}
 
@@ -167,23 +181,23 @@ export default function TestimonialSlider() {
       <div>
         <div
           className={`flex items-stretch px-4 overflow-hidden transition-transform duration-500 ${
-            isTransitioning ? 'opacity-95' : ''
+            isTransitioning ? "opacity-95" : ""
           }`}
         >
           <TestimonialCard isPartial={true} />
 
-          {visibleSecondRow.map((testimonial) => (
+          {visibleSecondRow?.map((testimonial) => (
             <TestimonialCard key={testimonial.id} testimonial={testimonial} />
           ))}
 
-          {visibleSecondRow.length < 4 &&
-            [...Array(4 - visibleSecondRow.length)].map((_, i) => (
+          {visibleSecondRow?.length < 4 &&
+            [...Array(4 - visibleSecondRow?.length)]?.map((_, i) => (
               <TestimonialCard
                 key={`empty-${i}`}
                 testimonial={
                   secondRow[
-                    (activeIndex * 4 + visibleSecondRow.length + i) %
-                      secondRow.length
+                    (activeIndex * 4 + visibleSecondRow?.length + i) %
+                      secondRow?.length
                   ]
                 }
               />
@@ -193,5 +207,5 @@ export default function TestimonialSlider() {
         </div>
       </div>
     </div>
-  )
+  );
 }

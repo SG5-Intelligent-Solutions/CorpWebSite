@@ -32,7 +32,7 @@ export const FrameWrapperByAnima = () => {
           <NavigationMenuList className="flex gap-3 md:gap-10">
             {navItems.map((item, index) => (
               <NavigationMenuItem key={index}>
-                <NavigationMenuLink className="[font-family:'DM_Sans',Helvetica] font-bold text-white text-sm md:text-xl hover:text-[#a1c0ff] transition-colors cursor-pointer">
+                <NavigationMenuLink className="[font-family:'DM_Sans',Helvetica] font-bold text-white text-sm  md:text-xl    5xl:text-5xl hover:text-[#a1c0ff] transition-colors cursor-pointer">
                   {item}
                 </NavigationMenuLink>
               </NavigationMenuItem>

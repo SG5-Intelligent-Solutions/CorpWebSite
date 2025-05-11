@@ -6,7 +6,7 @@ const TestimonialSection = ({ title, subTitle, children }) => {
         <h2 className="[font-family:'Poppins',Helvetica] font-medium text-white text-[64px] tracking-[0] leading-[77px]">
           {title}
         </h2>
-        <span className="[font-family:'Inter',Helvetica] font-medium text-[#a1c0ff] text-base text-right tracking-[0] leading-[27.2px]">
+        <span className=" font-inter font-medium text-sm  md:text-base  4xl:text-lg 5xl:text-3xl 6xl:text-4xl  text-[#a1c0ff]  text-right tracking-[0] leading-[27.2px]">
           {subTitle}
         </span>
       </div>

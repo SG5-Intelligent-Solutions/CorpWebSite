@@ -14,8 +14,8 @@ export const BackgroundWrapperByAnima = () => {
   // Data for the tags/badges to make the code more maintainable
   const tags = [
     { text: "Predictive Analytics", className: "w-[185px]" },
-    { text: "Business Intelligence", className: "w-[196px]" },
-    { text: "Real-Time Insights", className: "w-[185px]" },
+    { text: "Business Intelligence", className: "w-[180px]" },
+    { text: "Real-Time Insights", className: "w-[160px]" },
     { text: "Decision-Making", className: "w-[167px]" },
     { text: "Data Visualization", className: "w-[176px]" },
   ];

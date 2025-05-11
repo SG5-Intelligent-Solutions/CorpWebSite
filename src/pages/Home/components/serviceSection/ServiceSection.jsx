@@ -8,7 +8,7 @@ const ServiceSection = ({ title, subTitle, services }) => {
         <h2 className="font-medium text-white leading-tight text-3xl sm:text-4xl md:text-5xl xl:text-6xl 2xl:text-[64px] 4xl:text-[72px] 6xl:text-[80px]">
           {title}
         </h2>
-        <span className="text-[#a1c0ff] text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl 4xl:text-5xl leading-snug text-left lg:text-right max-w-xl">
+        <span className="text-[#A1C0FF] font-poppins font-medium text-sm  md:text-base  4xl:text-lg 5xl:text-3xl 6xl:text-4xl leading-snug text-left lg:text-right max-w-xl">
           {subTitle}
         </span>
       </div>

@@ -6,7 +6,6 @@ import { Card, CardContent } from "../../../../components/ui/card";
 import { Separator } from "../../../../components/ui/separator";
 
 export const BackgroundByAnima = () => {
-  // Data for badges to enable mapping
   const badges = [
     { text: "Efficiency", className: "w-[108px]" },
     { text: "Predictive Analytics", className: "w-[186px]" },
@@ -28,14 +27,14 @@ export const BackgroundByAnima = () => {
           </h2>
         </div>
 
-        <p className="font-['Poppins',Helvetica] font-medium text-[#cbcbcb] text-lg leading-[27px] mt-4">
+        <p className="font-['Poppins',Helvetica] font-medium text-[#cbcbcb] text-lg leading-[27px]">
           Leverage predictive analytics to maximize asset lifespan, reduce
           maintenance costs, and improve operational efficiency.
         </p>
 
         <Separator className="bg-[#ffffff14] my-2" />
 
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-3 ">
           {badges.slice(0, 2).map((badge, index) => (
             <Badge
               key={index}

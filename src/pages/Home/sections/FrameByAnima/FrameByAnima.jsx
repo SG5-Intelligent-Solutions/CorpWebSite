@@ -1,232 +1,302 @@
-import { ArrowRight, ChevronRight, PlayIcon } from 'lucide-react'
-import { useState, useRef, useEffect } from 'react'
+import { ArrowRight, ChevronRight, PlayIcon } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
 
 export const FrameByAnima = () => {
   // Array of industry data for swipeable content
   const industriesData = [
     {
-      id: 'energy',
-      title: 'Energy',
+      id: "energy",
+      title: "Energy",
       challenges: {
-        title: 'Key Challenges:',
+        title: "Key Challenges:",
         description:
-          'Dynamic energy pricing, asset management, and operational inefficiencies.',
+          "Dynamic energy pricing, asset management, and operational inefficiencies.",
       },
       solutions: {
-        title: 'SG5.ai Solutions',
+        title: "SG5.ai Solutions",
         description:
-          'Smart Energy Management System, Predictive Asset Management, Data-Driven Decision Support.',
+          "Smart Energy Management System, Predictive Asset Management, Data-Driven Decision Support.",
       },
-      image: '/img1.png',
+      image: "/img1.png",
     },
     {
-      id: 'healthcare',
-      title: 'Healthcare',
+      id: "healthcare",
+      title: "Healthcare",
       challenges: {
-        title: 'Key Challenges:',
+        title: "Key Challenges:",
         description:
-          'Regulatory compliance, data management, and operational efficiency.',
+          "Regulatory compliance, data management, and operational efficiency.",
       },
       solutions: {
-        title: 'SG5.ai Solutions',
+        title: "SG5.ai Solutions",
         description:
-          'Blockchain-Based Compliance Tool, Bespoke Software Development, AI & ML for Predictive Healthcare Analytics.',
+          "Blockchain-Based Compliance Tool, Bespoke Software Development, AI & ML for Predictive Healthcare Analytics.",
       },
-      image: '/img2.png',
+      image: "/img2.png",
     },
     {
-      id: 'transport',
-      title: 'Logistics & Transportation',
+      id: "transport",
+      title: "Logistics & Transportation",
       challenges: {
-        title: 'Key Challenges:',
+        title: "Key Challenges:",
         description:
-          'Fleet management, route optimization, and predictive maintenance.',
+          "Fleet management, route optimization, and predictive maintenance.",
       },
       solutions: {
-        title: 'SG5.ai Solutions',
+        title: "SG5.ai Solutions",
         description:
-          'EV Fleet Management Platform, Predictive Asset Management, Data Engineering.',
+          "EV Fleet Management Platform, Predictive Asset Management, Data Engineering.",
       },
-      image: '/img3.png',
+      image: "/img3.png",
     },
-  ]
+    {
+      id: "finance",
+      title: "Finance",
+      challenges: {
+        title: "Key Challenges:",
+        description:
+          "Data-driven decision-making, fraud detection, and compliance.",
+      },
+      solutions: {
+        title: "SG5.ai Solutions",
+        description:
+          "Data-Driven Decision Support Platform, Blockchain Services, Custom Software Development.",
+      },
+      image: "/finance.svg",
+    },
+    {
+      id: "aerospace",
+      title: "Aerospace",
+      challenges: {
+        title: "Key Challenges:",
+        description:
+          "Asset lifecycle management, regulatory compliance, and operational optimization.",
+      },
+      solutions: {
+        title: "SG5.ai Solutions",
+        description:
+          "Predictive Asset Management System, Blockchain-Based Compliance Tool, Consulting & Custom Development.",
+      },
+      image: "/aerospace.svg",
+    },
+  ];
 
   // State for tracking current industry index
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const currentIndustry = industriesData[currentIndex]
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const currentIndustry = industriesData[currentIndex];
 
   // Slider reference and state
-  const sliderRef = useRef(null)
-  const thumbRef = useRef(null)
-  const [isDragging, setIsDragging] = useState(false)
-  const [sliderWidth, setSliderWidth] = useState(0)
-  const [startPosition, setStartPosition] = useState(0)
-  
+  const sliderRef = useRef(null);
+  const thumbRef = useRef(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [sliderWidth, setSliderWidth] = useState(0);
+  const [startPosition, setStartPosition] = useState(0);
+
   // Refs for wave animation
-  const canvasRef = useRef(null)
-  const animationFrameRef = useRef(null)
+  const canvasRef = useRef(null);
+  const animationFrameRef = useRef(null);
 
   // Calculate position for the slider indicator
   const calculateThumbPosition = (index) => {
-    const position = index / (industriesData.length - 1)
-    return position * 100
-  }
+    const position = index / (industriesData.length - 1);
+    return position * 100;
+  };
 
   // Initialize slider dimensions
   useEffect(() => {
     if (sliderRef.current) {
-      setSliderWidth(sliderRef.current.offsetWidth)
+      setSliderWidth(sliderRef.current.offsetWidth);
     }
-  }, [])
-  
+  }, []);
+
   // Wave animation setup
   useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    
-    const ctx = canvas.getContext('2d')
-    const canvasWidth = canvas.width
-    const canvasHeight = canvas.height
-    
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    const canvasWidth = canvas.width;
+    const canvasHeight = canvas.height;
+
     // Set canvas dimensions to match container size
     const resizeCanvas = () => {
-      const container = canvas.parentElement
+      const container = canvas.parentElement;
       if (container) {
-        canvas.width = container.offsetWidth
-        canvas.height = container.offsetHeight
+        canvas.width = container.offsetWidth;
+        canvas.height = container.offsetHeight;
       }
-    }
-    
-    resizeCanvas()
-    window.addEventListener('resize', resizeCanvas)
-    
+    };
+
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
     // Wave parameters
     const waves = [
-      { amplitude: 20, frequency: 0.02, speed: 0.03, color: 'rgba(161, 192, 255, 0.3)' },
-      { amplitude: 15, frequency: 0.03, speed: 0.02, color: 'rgba(79, 70, 229, 0.2)' },
-      { amplitude: 10, frequency: 0.04, speed: 0.01, color: 'rgba(59, 130, 246, 0.15)' }
-    ]
-    
-    let time = 0
-    
+      {
+        amplitude: 20,
+        frequency: 0.02,
+        speed: 0.03,
+        color: "rgba(161, 192, 255, 0.3)",
+      },
+      {
+        amplitude: 15,
+        frequency: 0.03,
+        speed: 0.02,
+        color: "rgba(79, 70, 229, 0.2)",
+      },
+      {
+        amplitude: 10,
+        frequency: 0.04,
+        speed: 0.01,
+        color: "rgba(59, 130, 246, 0.15)",
+      },
+    ];
+
+    let time = 0;
+
     // Animation function
     const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-      
-      waves.forEach(wave => {
-        drawWave(ctx, canvas.width, canvas.height, wave.amplitude, wave.frequency, time * wave.speed, wave.color)
-      })
-      
-      time += 1
-      animationFrameRef.current = requestAnimationFrame(animate)
-    }
-    
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      waves.forEach((wave) => {
+        drawWave(
+          ctx,
+          canvas.width,
+          canvas.height,
+          wave.amplitude,
+          wave.frequency,
+          time * wave.speed,
+          wave.color
+        );
+      });
+
+      time += 1;
+      animationFrameRef.current = requestAnimationFrame(animate);
+    };
+
     // Draw a single wave
-    const drawWave = (ctx, width, height, amplitude, frequency, phase, color) => {
-      ctx.beginPath()
-      ctx.moveTo(0, height / 2)
-      
+    const drawWave = (
+      ctx,
+      width,
+      height,
+      amplitude,
+      frequency,
+      phase,
+      color
+    ) => {
+      ctx.beginPath();
+      ctx.moveTo(0, height / 2);
+
       for (let x = 0; x < width; x++) {
-        const y = height / 2 + amplitude * Math.sin(x * frequency + phase)
-        ctx.lineTo(x, y)
+        const y = height / 2 + amplitude * Math.sin(x * frequency + phase);
+        ctx.lineTo(x, y);
       }
-      
-      ctx.lineTo(width, height)
-      ctx.lineTo(0, height)
-      ctx.closePath()
-      
-      ctx.fillStyle = color
-      ctx.fill()
-    }
-    
-    animate()
-    
+
+      ctx.lineTo(width, height);
+      ctx.lineTo(0, height);
+      ctx.closePath();
+
+      ctx.fillStyle = color;
+      ctx.fill();
+    };
+
+    animate();
+
     // Cleanup function
     return () => {
-      window.removeEventListener('resize', resizeCanvas)
+      window.removeEventListener("resize", resizeCanvas);
       if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current)
+        cancelAnimationFrame(animationFrameRef.current);
       }
-    }
-  }, [])
+    };
+  }, []);
 
   // Handle drag start
   const handleDragStart = (e) => {
-    setIsDragging(true)
-    setStartPosition(e.clientX || (e.touches && e.touches[0].clientX))
-    document.addEventListener('mousemove', handleDrag)
-    document.addEventListener('touchmove', handleDrag)
-    document.addEventListener('mouseup', handleDragEnd)
-    document.addEventListener('touchend', handleDragEnd)
-  }
+    setIsDragging(true);
+    setStartPosition(e.clientX || (e.touches && e.touches[0].clientX));
+    document.addEventListener("mousemove", handleDrag);
+    document.addEventListener("touchmove", handleDrag);
+    document.addEventListener("mouseup", handleDragEnd);
+    document.addEventListener("touchend", handleDragEnd);
+  };
 
   // Handle drag
   const handleDrag = (e) => {
-    if (!isDragging || !sliderRef.current) return
+    if (!isDragging || !sliderRef.current) return;
 
-    const clientX = e.clientX || (e.touches && e.touches[0].clientX)
-    const sliderRect = sliderRef.current.getBoundingClientRect()
-    const offsetX = clientX - sliderRect.left
-    const percentage = Math.max(0, Math.min(1, offsetX / sliderWidth))
+    const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+    const sliderRect = sliderRef.current.getBoundingClientRect();
+    const offsetX = clientX - sliderRect.left;
+    const percentage = Math.max(0, Math.min(1, offsetX / sliderWidth));
 
     // Calculate nearest index based on percentage
-    const newIndex = Math.round(percentage * (industriesData.length - 1))
+    const newIndex = Math.round(percentage * (industriesData.length - 1));
     if (newIndex !== currentIndex) {
-      setCurrentIndex(newIndex)
+      setCurrentIndex(newIndex);
     }
-  }
+  };
 
   // Handle drag end
   const handleDragEnd = () => {
-    setIsDragging(false)
-    document.removeEventListener('mousemove', handleDrag)
-    document.removeEventListener('touchmove', handleDrag)
-    document.removeEventListener('mouseup', handleDragEnd)
-    document.removeEventListener('touchend', handleDragEnd)
-  }
+    setIsDragging(false);
+    document.removeEventListener("mousemove", handleDrag);
+    document.removeEventListener("touchmove", handleDrag);
+    document.removeEventListener("mouseup", handleDragEnd);
+    document.removeEventListener("touchend", handleDragEnd);
+  };
 
   // Handle click on slider track
   const handleSliderClick = (e) => {
-    if (!sliderRef.current) return
+    if (!sliderRef.current) return;
 
-    const sliderRect = sliderRef.current.getBoundingClientRect()
-    const offsetX = e.clientX - sliderRect.left
-    const percentage = Math.max(0, Math.min(1, offsetX / sliderWidth))
+    const sliderRect = sliderRef.current.getBoundingClientRect();
+    const offsetX = e.clientX - sliderRect.left;
+    const percentage = Math.max(0, Math.min(1, offsetX / sliderWidth));
 
     // Calculate nearest index based on percentage
-    const newIndex = Math.round(percentage * (industriesData.length - 1))
-    setCurrentIndex(newIndex)
-  }
+    const newIndex = Math.round(percentage * (industriesData.length - 1));
+    setCurrentIndex(newIndex);
+  };
 
   // Go to previous/next industry
   const goToPrevious = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? industriesData.length - 1 : prevIndex - 1,
-    )
-  }
+      prevIndex === 0 ? industriesData.length - 1 : prevIndex - 1
+    );
+  };
 
   const goToNext = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === industriesData.length - 1 ? 0 : prevIndex + 1,
-    )
-  }
+      prevIndex === industriesData.length - 1 ? 0 : prevIndex + 1
+    );
+  };
 
   return (
     <section className="relative w-full py-24 overflow-hidden bg-black">
       {/* Animated background with canvas */}
       <div className="absolute inset-0 w-full h-full z-0">
-        <div 
+        {/* <div 
           className="absolute inset-0 w-full h-full bg-cover bg-center opacity-50"
           style={{
-            backgroundImage: `url('/3d-data-technology-abstract-background-with-cyber-particles-1.png')`,
+            backgroundImage: `url('/sg5Bg.mp4')`,
           }}
           aria-hidden="true"
-        />
-        <canvas 
+        /> */}
+        <video
+          className="w-full  object-contain"
+          autoPlay
+          muted
+          loop
+          playsInline
+        >
+          <source src="/sg5Bg.mp4" type="video/mp4" />
+        </video>
+        {/* <canvas 
           ref={canvasRef} 
           className="absolute inset-0 w-full h-full opacity-40" 
           aria-hidden="true"
-        />
+        /> */}
       </div>
 
       {/* Top gradient overlay */}
@@ -243,7 +313,7 @@ export const FrameByAnima = () => {
             Transforming Core Industries Through Innovation
           </h2>
           <div className="mt-4 md:mt-0">
-            <span className="font-medium text-blue-300 text-base text-right">
+            <span className="text-[#A1C0FF] font-inter font-medium text-sm  md:text-base  4xl:text-lg 5xl:text-3xl 6xl:text-4xl  text-right">
               Industries We Serve
             </span>
           </div>
@@ -256,7 +326,7 @@ export const FrameByAnima = () => {
             <div className="w-full mx-auto rounded-2xl overflow-hidden">
               <div className="p-0 flex justify-center items-center">
                 <div
-                  className="relative aspect-video rounded-2xl bg-center bg-cover w-[30rem] h-[30rem] "
+                  className="relative aspect-video rounded-2xl bg-center bg-cover w-[730px] h-[30rem] "
                   style={{ backgroundImage: `url(${currentIndustry.image})` }}
                 >
                   {/* Play button */}
@@ -273,27 +343,30 @@ export const FrameByAnima = () => {
             {/* Main content */}
             <div className="relative z-10">
               {/* Energy title */}
-              <h2 className="text-7xl font-light text-white mb-8">
+              <h2 className="md:text-5xl  font-poppins  font-medium bg-gradient-to-b from-white to-[#A1C0FF] bg-clip-text text-transparent mb-10">
                 {currentIndustry.title}
               </h2>
 
               <div className="relative h-full rounded-lg">
                 {/* Challenges card - dark blue with border */}
-                <div className="min-h-[25rem] md:w-[20rem] h-full bg-navy-900 bg-opacity-40 backdrop-blur-md rounded-lg border-[5px] border-[#A1C0FF] p-8">
-                  <h3 className="text-3xl font-light text-white mb-6">
-                    {currentIndustry.challenges.title}
+                <div className="min-h-[28rem] md:w-[20rem] h-full bg-navy-900 bg-opacity-40 backdrop-blur-md rounded-lg border-[5px] border-[#A1C0FF] p-6">
+                  <h3 className="font-poppins text-3xl font-medium text-[#FFFFFF] mb-6">
+                    Key
+                    <br />
+                    Challenges:
                   </h3>
-                  <p className="text-xl font-light text-white">
+
+                  <p className="font-poppins text-xl font-medium text-[#FFFFFF]">
                     {currentIndustry.challenges.description}
                   </p>
                 </div>
 
                 {/* Solutions card - light blue positioned to overlap */}
-                <div className="md:w-[20rem] h-[20rem] bg-blue-300 rounded-lg p-8 absolute left-1/3 -bottom-[8rem]">
-                  <h3 className="text-3xl font-bold text-black mb-4">
-                    {currentIndustry.solutions.title}
+                <div className="md:w-[22rem] h-[22rem] bg-blue-300 rounded-lg p-6 absolute left-1/3 -bottom-[10rem]">
+                  <h3 className="text-2xl font-poppins font-medium text-[#000000] mb-4">
+                    SG5.ai <br/> Solutions
                   </h3>
-                  <p className="text-xl text-black">
+                  <p className="text-base font-poppins font-medium text-[#000000] ">
                     {currentIndustry.solutions.description}
                   </p>
                 </div>
@@ -304,7 +377,7 @@ export const FrameByAnima = () => {
 
         {/* Swipe indicator */}
         <div className="flex flex-col items-center mt-16">
-          <p className="text-xl font-medium text-blue-300 mb-4">
+          <p className="font-poppins text-xl font-medium text-[#A1C0FF] mb-4">
             Swipe to see more
           </p>
 
@@ -321,7 +394,7 @@ export const FrameByAnima = () => {
                 className="absolute inset-0 bg-blue-300"
                 style={{
                   width: `${calculateThumbPosition(currentIndex)}%`,
-                  transition: isDragging ? 'none' : 'width 0.3s ease',
+                  transition: isDragging ? "none" : "width 0.3s ease",
                 }}
               />
 
@@ -333,7 +406,7 @@ export const FrameByAnima = () => {
                   backgroundSize: `${
                     100 - calculateThumbPosition(currentIndex)
                   }% 100%`,
-                  backgroundPosition: 'right center',
+                  backgroundPosition: "right center",
                 }}
               />
 
@@ -343,9 +416,9 @@ export const FrameByAnima = () => {
                 className="absolute top-1 cursor-grab active:cursor-grabbing z-20 flex items-center justify-center"
                 style={{
                   left: `calc(${calculateThumbPosition(currentIndex)}% - ${
-                    currentIndex > 0 ? '12px' : '0px'
+                    currentIndex > 0 ? "12px" : "0px"
                   })`,
-                  transition: isDragging ? 'none' : 'left 0.3s ease',
+                  transition: isDragging ? "none" : "left 0.3s ease",
                 }}
                 onMouseDown={handleDragStart}
                 onTouchStart={handleDragStart}
@@ -353,7 +426,7 @@ export const FrameByAnima = () => {
                 <ArrowRight
                   size={20}
                   className={`text-white stroke-2 ${
-                    currentIndex !== 0 && '-ml-3'
+                    currentIndex !== 0 && "-ml-3"
                   }`}
                 />
               </div>
@@ -362,6 +435,5 @@ export const FrameByAnima = () => {
         </div>
       </div>
     </section>
-  )
-}
-
+  );
+};

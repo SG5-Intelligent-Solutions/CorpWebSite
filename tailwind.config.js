@@ -18,6 +18,11 @@ module.exports = {
     },
 
     extend: {
+       fontSize: {
+        '10xl': '10rem',
+        '11xl': '12rem',
+        '12xl': '14rem',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -58,18 +63,23 @@ module.exports = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-      fontFamily: {
-        sans: [
-          "ui-sans-serif",
-          "system-ui",
-          "sans-serif",
-          "Apple Color Emoji",
-          "Segoe UI Emoji",
-          "Segoe UI Symbol",
-          "Noto Color Emoji",
-          "Bebas Neue",
-        ],
+       fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
+        bebas: ['Bebas Neue', 'cursive'],
+         inter: ['Inter', 'Helvetica'],
       },
+      // fontFamily: {
+      //   sans: [
+      //     "ui-sans-serif",
+      //     "system-ui",
+      //     "sans-serif",
+      //     "Apple Color Emoji",
+      //     "Segoe UI Emoji",
+      //     "Segoe UI Symbol",
+      //     "Noto Color Emoji",
+      //     "Bebas Neue",
+      //   ],
+      // },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

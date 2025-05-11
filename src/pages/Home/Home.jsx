@@ -7,12 +7,13 @@ import { FrameByAnima } from "./sections/FrameByAnima";
 import { FrameWrapperByAnima } from "./sections/FrameWrapperByAnima";
 import { SectionComponentNodeByAnima } from "./sections/SectionComponentNodeByAnima";
 import TestimonialSlider from "../../components/ui/TestimonialSlider";
-import { services } from "../../lib/utils";
+import { cardsData, services } from "../../lib/utils";
 import HeroSection from "./components/heroSection/HeroSection";
 import DigitalHandSection from "./components/digitalHandSection/DigitalHandSection";
 import ServiceSection from "./components/serviceSection/ServiceSection";
 import IndustrySection from "./components/industrySection/IndustrySection";
 import TestimonialSection from "./components/testimonialSection/TestimonialSection";
+import IndustrySolutionCard from "./components/industrySection/components/IndustrySolutionCard";
 
 export const Home = () => {
   return (
@@ -41,7 +42,7 @@ export const Home = () => {
       <DigitalHandSection
         videoSrc="/Hand.mp4"
         heading={
-          <h1 className="text-white text-5xl">
+          <>
             SG5.ai is a{" "}
             <span className="font-bold bg-gradient-to-r from-[#A1C0FF] to-white bg-clip-text text-transparent">
               forward-
@@ -51,7 +52,7 @@ export const Home = () => {
               startup{" "}
             </span>{" "}
             based in Texas.
-          </h1>
+          </>
         }
         description=" Our mission is to empower businesses with data-driven solutions
               that enhance efficiency, optimize operations, and foster
@@ -83,12 +84,30 @@ export const Home = () => {
         subTitle="Our Products"
         backgroundImage="/industry-bg-2.svg"
       >
-        <BackgroundByAnima />
-        <BackgroundWrapperByAnima />
-        <DivWrapperByAnima />
-        <DivByAnima />
-        <SectionComponentNodeByAnima />
+        <div className="container mx-auto px-4">
+          {/* First Row - 3 Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6 w-full">
+            {cardsData?.slice(0, 3)?.map((card, index) => (
+              <div key={index} className="h-full">
+                <IndustrySolutionCard {...card} />
+              </div>
+            ))}
+          </div>
+
+          {/* Second Row - 2 Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 ">
+            {cardsData?.slice(3, 5)?.map((card, index) => (
+              <div
+                key={index}
+                className="h-full lg:mx-auto lg:w-full xl:max-w-xl"
+              >
+                <IndustrySolutionCard {...card} />
+              </div>
+            ))}
+          </div>
+        </div>
       </IndustrySection>
+
       <section>
         <FrameByAnima />
       </section>
