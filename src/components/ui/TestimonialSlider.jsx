@@ -62,25 +62,34 @@ export default function TestimonialSlider() {
     );
   };
 
-  const duplicatedTestimonials = [...testimonials, ...testimonials, ...testimonials];
+  const duplicatedTestimonials = [
+    ...testimonials,
+    ...testimonials,
+    ...testimonials,
+  ];
   return (
     <div className="w-full bg-black text-white py-8 mx-auto relative overflow-hidden">
       <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
       <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
 
-      <div className="animate-scroll">
-        <div className="flex gap-4 mb-6 px-4">
+      {/* First Row */}
+      <div className="animate-scroll mb-6">
+        <div className="flex gap-4 px-4">
           {duplicatedTestimonials.map((testimonial, index) => (
             <TestimonialCard
-              key={`${testimonial.id}-${index}`}
+              key={`first-${testimonial.id}-${index}`}
               testimonial={testimonial}
             />
           ))}
         </div>
+      </div>
+
+      {/* Second Row  */}
+      <div className="animate-scroll-delayed">
         <div className="flex gap-4 px-4">
           {duplicatedTestimonials.map((testimonial, index) => (
             <TestimonialCard
-              key={`${testimonial.id}-${index}-2`}
+              key={`second-${testimonial.id}-${index}`}
               testimonial={testimonial}
             />
           ))}
@@ -97,11 +106,17 @@ export default function TestimonialSlider() {
           }
         }
         .animate-scroll {
-          animation: scroll 20s linear infinite;
+          animation: scroll 30s linear infinite;
           width: 200%;
         }
-        .animate-scroll:hover {
-          animation-duration: 80s; 
+        .animate-scroll-delayed {
+          animation: scroll 30s linear infinite;
+          width: 200%;
+          animation-delay: -20s; 
+        }
+        .animate-scroll:hover,
+        .animate-scroll-delayed:hover {
+          animation-duration: 80s;
         }
       `}</style>
     </div>
