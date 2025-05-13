@@ -23,6 +23,15 @@ module.exports = {
         '11xl': '12rem',
         '12xl': '14rem',
       },
+         keyframes: {
+      scroll: {
+        '0%': { transform: 'translateX(0%)' },
+        '100%': { transform: 'translateX(-50%)' }, // adjust for duplicate array length
+      },
+    },
+    animation: {
+      scroll: 'scroll 20s linear infinite',
+    },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

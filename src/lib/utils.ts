@@ -143,3 +143,69 @@ export const cardsData = [
     iconSrc: "/write.svg",
   },
 ];
+
+
+export const  testimonials = [
+    // First row
+    {
+      id: 1,
+      rating: 5,
+      text: "Cyntch has been an amazing investment partner for me. Their investment management services are easy to use.",
+      author: "@Yury",
+    },
+    {
+      id: 2,
+      rating: 5,
+      text: "I never realized how much money I was wasting on unnecessary expenses until I started using Cyntch.",
+      author: "@Aryan",
+    },
+    {
+      id: 3,
+      rating: 5,
+      text: "Such a clean, beautiful template and so easy to customise. Would highly recommend.",
+      author: "@Arim",
+    },
+    // Second row
+    {
+      id: 4,
+      rating: 5,
+      text: "Cyntch has been an amazing investment partner for me. Their investment management services are easy to use.",
+      author: "@Aryan",
+    },
+    {
+      id: 5,
+      rating: 5,
+      text: "Such a clean, beautiful template and so easy to customise. Would highly recommend.",
+      author: "@Arim",
+    },
+    {
+      id: 6,
+      rating: 4,
+      text: "I accidentally discovered this while looking for something else, and I'm glad I did!",
+      author: "@Sam",
+    },
+    {
+      id: 7,
+      rating: 5,
+      text: "I never realized how much money I was wasting on unnecessary expenses until I started using Cyntch.",
+      author: "@Aryan",
+    },
+    {
+      id: 8,
+      rating: 5,
+      text: "Such a clean, beautiful template and so easy to customise. Would highly recommend.",
+      author: "@Arim",
+    },
+    {
+      id: 9,
+      rating: 4,
+      text: "I accidentally discovered this while looking for something else, and I'm glad I did!",
+      author: "@Sam",
+    },
+    {
+      id: 10,
+      rating: 5,
+      text: "I never realized how much money I was wasting on unnecessary expenses until I started using Cyntch.",
+      author: "@Aryan",
+    },
+  ];
