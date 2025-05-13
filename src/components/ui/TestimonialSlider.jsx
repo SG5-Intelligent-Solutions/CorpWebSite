@@ -1,19 +1,6 @@
-import { useEffect } from "react";
 import { testimonials } from "../../lib/utils";
 
 export default function TestimonialSlider() {
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex(
-        (prevIndex) => (prevIndex + 1) % Math.ceil(testimonials.length / 3)
-      );
-
-      setTimeout(() => {}, 500);
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, [testimonials.length]);
-
   const renderStars = (rating) => {
     return (
       <div
@@ -75,7 +62,7 @@ export default function TestimonialSlider() {
     );
   };
 
-  const duplicatedTestimonials = [...testimonials, ...testimonials];
+  const duplicatedTestimonials = [...testimonials, ...testimonials, ...testimonials];
   return (
     <div className="w-full bg-black text-white py-8 mx-auto relative overflow-hidden">
       <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
@@ -110,8 +97,11 @@ export default function TestimonialSlider() {
           }
         }
         .animate-scroll {
-          animation: scroll 40s linear infinite;
+          animation: scroll 20s linear infinite;
           width: 200%;
+        }
+        .animate-scroll:hover {
+          animation-duration: 80s; 
         }
       `}</style>
     </div>
