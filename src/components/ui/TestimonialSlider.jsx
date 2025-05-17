@@ -1,37 +1,7 @@
 import { testimonials } from "../../lib/utils";
 
 export default function TestimonialSlider() {
-  const renderStars = (rating) => {
-    return (
-      <div
-        className="flex  mb-2 sm:mb-2 md:mb-3 
-      lg:mb-4 xl:mb-5 
-      2xl:mb-6 3xl:mb-7 
-      4xl:mb-8 5xl:mb-10 6xl:mb-12"
-      >
-        {[...Array(5)]?.map((_, i) => (
-          <svg
-            key={i}
-            className={`w-4 h-4
-            sm:w-5 sm:h-5
-            md:w-5 md:h-5
-            lg:w-6 lg:h-6
-            xl:w-6 xl:h-6
-            2xl:w-7 2xl:h-7
-            3xl:w-8 3xl:h-8
-            4xl:w-9 4xl:h-9
-            5xl:w-10 5xl:h-10
-            6xl:w-12 6xl:h-12
-            ${i < rating ? "text-white" : "text-gray-500"}`}
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-        ))}
-      </div>
-    );
-  };
+
 
   const TestimonialCard = ({ testimonial }) => {
     return (
