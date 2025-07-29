@@ -7,18 +7,19 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "../../../../components/ui/navigation-menu";
+import { Link } from "react-router-dom";  
 
 export const FrameWrapperByAnima = () => {
   const navItems = [
-    "About Us",
-    "Services",
-    "Products",
-    "Industries",
-    "Contact Us",
+    { name: "About Us", path: "/about-us" },
+    { name: "Services", path: "/services" },  // Add path for Services page
+    { name: "Products", path: "/products" },
+    { name: "Industries", path: "/industries" },
+    { name: "Contact Us", path: "/contact-us" },
   ];
 
   return (
-    <header className="bg-black w-full">
+    <header className="bg-black w-full mb-0">
       <div className="flex flex-col lg:flex-row items-center md:justify-between px-8 py-4 gap-5">
         <div className="flex-shrink-0">
           <img
@@ -31,11 +32,12 @@ export const FrameWrapperByAnima = () => {
         <NavigationMenu className="flex-grow flex justify-center flex-wrap">
           <NavigationMenuList className="flex gap-3 md:gap-10">
             {navItems.map((item, index) => (
-              <NavigationMenuItem key={index}>
-                <NavigationMenuLink className="[font-family:'DM_Sans',Helvetica] font-bold text-white text-sm md:text-xl hover:text-[#a1c0ff] transition-colors cursor-pointer">
-                  {item}
-                </NavigationMenuLink>
-              </NavigationMenuItem>
+            <NavigationMenuItem key={index}>
+            <NavigationMenuLink as="a" href={item.path} className="[font-family:'DM_Sans',Helvetica] font-bold text-white text-sm md:text-xl hover:text-[#a1c0ff] transition-colors cursor-pointer">
+              {item.name}
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+          
             ))}
           </NavigationMenuList>
         </NavigationMenu>
