@@ -1,8 +1,10 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; // Import Router components
-import { Home } from "./screens/Home/Home";
-import { Service } from "./screens/Home/Service"; // Assuming your Service component is in ./screens/Home/Service
+
+import { Home, Service } from "./pages/Home";
+
+
 
 // Create root and wrap with Router for routing functionality
 createRoot(document.getElementById("app")).render(
