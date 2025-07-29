@@ -5,7 +5,33 @@ module.exports = {
     "components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1536px",
+      "3xl": "1800px",
+      "4xl": "2100px",
+      "5xl": "3000px",
+      "6xl": "4600px", 
+    },
+
     extend: {
+       fontSize: {
+        '10xl': '10rem',
+        '11xl': '12rem',
+        '12xl': '14rem',
+      },
+         keyframes: {
+      scroll: {
+        '0%': { transform: 'translateX(0%)' },
+        '100%': { transform: 'translateX(-50%)' }, // adjust for duplicate array length
+      },
+    },
+    animation: {
+      scroll: 'scroll 20s linear infinite',
+    },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -46,17 +72,23 @@ module.exports = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-      fontFamily: {
-        sans: [
-          "ui-sans-serif",
-          "system-ui",
-          "sans-serif",
-          '"Apple Color Emoji"',
-          '"Segoe UI Emoji"',
-          '"Segoe UI Symbol"',
-          '"Noto Color Emoji"',
-        ],
+       fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
+        bebas: ['Bebas Neue', 'cursive'],
+         inter: ['Inter', 'Helvetica'],
       },
+      // fontFamily: {
+      //   sans: [
+      //     "ui-sans-serif",
+      //     "system-ui",
+      //     "sans-serif",
+      //     "Apple Color Emoji",
+      //     "Segoe UI Emoji",
+      //     "Segoe UI Symbol",
+      //     "Noto Color Emoji",
+      //     "Bebas Neue",
+      //   ],
+      // },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
