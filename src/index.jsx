@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; // Import Router components
 
 import { Home, Service } from "./pages/Home";
+import { Contact } from "./pages/Home/ContactUs";
 
 
 
@@ -14,6 +15,7 @@ createRoot(document.getElementById("app")).render(
         {/* Define routes for Home and Service components */}
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<Service />} />
+        <Route path="/contact-us" element={<Contact />} />
       </Routes>
     </Router>
   </StrictMode>
