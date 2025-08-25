@@ -162,7 +162,7 @@ export const FrameByAnima = () => {
   };
 
   return (
-    <section className="relative w-full py-24 overflow-hidden bg-black">
+    <section className="relative w-full py-16 md:py-24 overflow-hidden bg-black">
       {/* Animated background with video */}
       <div className="absolute inset-0 w-full h-full z-0">
         <video
@@ -183,14 +183,14 @@ export const FrameByAnima = () => {
       <div className="absolute w-full h-64 bottom-0 left-0 bg-gradient-to-t from-black to-transparent z-10" />
 
       {/* Main content container */}
-      <div className="relative z-20 md:container mx-auto px-4">
+      <div className="relative z-20 container mx-auto px-4">
         {/* Header section */}
-        <div className="flex flex-col md:flex-row justify-between items-start mb-16">
-          <h2 className="font-medium text-white text-5xl leading-tight max-w-3xl">
+        <div className="flex flex-col md:flex-row justify-between items-start mb-12 md:mb-16">
+          <h2 className="font-medium text-white text-3xl md:text-5xl leading-tight max-w-3xl">
             Transforming Core Industries Through Innovation
           </h2>
           <div className="mt-4 md:mt-0">
-            <span className="text-[#A1C0FF] font-inter font-medium text-sm md:text-base 4xl:text-lg 5xl:text-3xl 6xl:text-4xl text-right">
+            <span className="text-[#A1C0FF] font-inter font-medium text-sm md:text-base text-left md:text-right">
               Industries We Serve
             </span>
           </div>
@@ -199,16 +199,16 @@ export const FrameByAnima = () => {
         {/* Main content area */}
         <div className="flex flex-col lg:flex-row gap-12 items-center">
           {/* Left side - Image with play button */}
-          <div className="relative flex-1">
+          <div className="relative w-full lg:flex-1">
             <div className="w-full mx-auto rounded-2xl overflow-hidden">
               <div className="p-0 flex justify-center items-center">
                 <div
-                  className="relative aspect-video rounded-2xl bg-center bg-cover w-[730px] h-[30rem] transition-all duration-700 ease-in-out"
+                  className="relative aspect-video rounded-2xl bg-center bg-cover w-full h-[15rem] md:h-[30rem] transition-all duration-700 ease-in-out"
                   style={{ backgroundImage: `url(${currentIndustry.image})` }}
                 >
                   {/* Play button with hover effects */}
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-5 bg-black bg-opacity-70 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-90 hover:scale-110 transition-all duration-300 group">
-                    <Play className="w-8 h-8 text-white group-hover:text-blue-300 transition-colors duration-300" />
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4 md:p-5 bg-black bg-opacity-70 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-90 hover:scale-110 transition-all duration-300 group">
+                    <Play className="w-6 h-6 md:w-8 md:h-8 text-white group-hover:text-blue-300 transition-colors duration-300" />
                   </div>
                 </div>
               </div>
@@ -216,17 +216,17 @@ export const FrameByAnima = () => {
           </div>
 
           {/* Right side - Content */}
-          <div className="relative md:w-[50%] text-white p-8 overflow-hidden">
+          <div className="relative w-full lg:w-[50%] text-white p-4 md:p-8">
             {/* Main content */}
             <div className="relative z-10">
               {/* Industry title with animation */}
-              <h2 className="md:text-5xl font-poppins font-medium bg-gradient-to-b from-white to-[#A1C0FF] bg-clip-text text-transparent mb-10 transition-all duration-700 ease-in-out transform">
+              <h2 className="text-4xl md:text-5xl font-poppins font-medium bg-gradient-to-b from-white to-[#A1C0FF] bg-clip-text text-transparent mb-8 md:mb-10 transition-all duration-700 ease-in-out transform">
                 {currentIndustry.title}
               </h2>
 
-              <div className="relative h-full rounded-lg">
+              <div className="relative h-auto md:h-full rounded-lg">
                 {/* Challenges card with enhanced styling */}
-                <div className="min-h-[28rem] md:w-[20rem] h-full bg-navy-900 bg-opacity-40 backdrop-blur-md rounded-lg border-[5px] border-[#A1C0FF] p-6 transition-all duration-500 ease-in-out hover:border-blue-300 hover:shadow-lg hover:shadow-blue-300/20">
+                <div className="min-h-[28rem] md:w-[20rem] h-full bg-navy-900 bg-opacity-40 backdrop-blur-md rounded-lg border-[5px] border-[#A1C0FF] p-6 transition-all duration-500 ease-in-out hover:border-blue-300 hover:shadow-lg hover:shadow-blue-300/20 mb-8 lg:mb-0">
                   <h3 className="font-poppins text-3xl font-medium text-[#FFFFFF] mb-6">
                     Key
                     <br />
@@ -239,9 +239,9 @@ export const FrameByAnima = () => {
                 </div>
 
                 {/* Solutions card with enhanced positioning and effects */}
-                <div className="md:w-[22rem] h-[22rem] bg-blue-300 rounded-lg p-6 absolute left-1/3 -bottom-[10rem] transition-all duration-500 ease-in-out hover:bg-blue-200 hover:shadow-lg hover:shadow-blue-400/30 hover:scale-105">
-                  <h3 className="text-2xl font-poppins font-medium text-[#000000] mb-4">
-                    SG5.ai <br/> Solutions
+                <div className="w-full md:w-[22rem] h-auto md:min-h-[22rem] bg-blue-300 rounded-lg p-6 md:absolute md:left-1/3 md:-bottom-[10rem] transition-all duration-500 ease-in-out hover:bg-blue-200 hover:shadow-lg hover:shadow-blue-400/30 hover:scale-105">
+                  <h3 className="text-xl md:text-2xl font-poppins font-medium text-[#000000] mb-4">
+                    SG5.ai <br /> Solutions
                   </h3>
                   <p className="text-base font-poppins font-medium text-[#000000] transition-all duration-300">
                     {currentIndustry.solutions.description}
@@ -253,13 +253,13 @@ export const FrameByAnima = () => {
         </div>
 
         {/* Enhanced Swipe indicator */}
-        <div className="flex flex-col items-center mt-16">
-          <p className="font-poppins text-xl font-medium text-[#A1C0FF] mb-4 transition-colors duration-300">
+        <div className="flex flex-col items-center mt-16 lg:mt-32">
+          <p className="font-poppins text-lg md:text-xl font-medium text-[#A1C0FF] mb-4 transition-colors duration-300">
             Swipe to see more
           </p>
 
           {/* Enhanced Custom slider component */}
-          <div className="relative w-80 mb-6">
+          <div className="relative w-full max-w-xs sm:w-80 mb-6">
             {/* Slider track with enhanced styling */}
             <div
               ref={sliderRef}
@@ -269,11 +269,13 @@ export const FrameByAnima = () => {
               {/* Animated fill background */}
               <div
                 className={`absolute inset-0 bg-gradient-to-r from-[#638dd1] to-[#387ff1] rounded-full transition-all duration-500 ease-out ${
-                  isCompleted ? 'shadow-inner shadow-green-400/50' : ''
+                  isCompleted ? "shadow-inner shadow-green-400/50" : ""
                 }`}
                 style={{
                   width: `${calculateThumbPosition(currentIndex)}%`,
-                  transition: isDragging ? "none" : "width 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+                  transition: isDragging
+                    ? "none"
+                    : "width 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
                 }}
               />
 
@@ -282,7 +284,7 @@ export const FrameByAnima = () => {
                 className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-full opacity-0 animate-pulse"
                 style={{
                   width: `${calculateThumbPosition(currentIndex)}%`,
-                  animation: isCompleted ? 'pulse 1s infinite' : 'none',
+                  animation: isCompleted ? "pulse 1s infinite" : "none",
                 }}
               />
 
@@ -295,11 +297,15 @@ export const FrameByAnima = () => {
               <div
                 ref={thumbRef}
                 className={`absolute top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg cursor-grab active:cursor-grabbing z-20 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-xl ${
-                  isDragging ? 'scale-105 shadow-xl' : ''
-                } ${isCompleted ? 'bg-[#5482cb] shadow-green-400/50' : ''}`}
+                  isDragging ? "scale-105 shadow-xl" : ""
+                } ${isCompleted ? "bg-[#5482cb] shadow-green-400/50" : ""}`}
                 style={{
-                  left: `calc(${calculateThumbPosition(currentIndex)}% - 20px)`,
-                  transition: isDragging ? "none" : "left 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s ease",
+                  left: `calc(${calculateThumbPosition(
+                    currentIndex
+                  )}% - 20px)`,
+                  transition: isDragging
+                    ? "none"
+                    : "left 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s ease",
                 }}
                 onMouseDown={handleDragStart}
                 onTouchStart={handleDragStart}
@@ -307,8 +313,8 @@ export const FrameByAnima = () => {
                 <ArrowRight
                   size={20}
                   className={`transition-all duration-300 ${
-                    isCompleted ? 'text-white rotate-90' : 'text-[#4688f3]'
-                  } ${isDragging ? 'scale-110' : ''}`}
+                    isCompleted ? "text-white rotate-90" : "text-[#4688f3]"
+                  } ${isDragging ? "scale-110" : ""}`}
                 />
               </div>
 
@@ -318,10 +324,11 @@ export const FrameByAnima = () => {
                   <div
                     key={index}
                     className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      index <= currentIndex ? 'bg-white shadow-sm' : 'bg-gray-500'
+                      index <= currentIndex ? "bg-white shadow-sm" : "bg-gray-500"
                     }`}
                     style={{
-                      transform: index === currentIndex ? 'scale(1.5)' : 'scale(1)',
+                      transform:
+                        index === currentIndex ? "scale(1.5)" : "scale(1)",
                     }}
                   />
                 ))}
@@ -344,8 +351,8 @@ export const FrameByAnima = () => {
                 onClick={() => setCurrentIndex(index)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
                   index === currentIndex
-                    ? 'bg-blue-400 shadow-lg shadow-blue-400/50 scale-125'
-                    : 'bg-gray-600 hover:bg-gray-500'
+                    ? "bg-blue-400 shadow-lg shadow-blue-400/50 scale-125"
+                    : "bg-gray-600 hover:bg-gray-500"
                 }`}
                 aria-label={`Go to ${industry.title}`}
               />

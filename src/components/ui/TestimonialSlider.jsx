@@ -1,8 +1,6 @@
 import { testimonials } from "../../lib/utils";
 
 export default function TestimonialSlider() {
-
-
   const TestimonialCard = ({ testimonial }) => {
     return (
       <div className="w-[280px] md:w-[400px] lg:w-[500px] flex-shrink-0 px-2">
@@ -11,9 +9,8 @@ export default function TestimonialSlider() {
             {[...Array(5)].map((_, i) => (
               <svg
                 key={i}
-                className={`w-4 h-4 md:w-6 md:h-6 lg:w-8 lg:h-8 ${
-                  i < testimonial.rating ? "text-white" : "text-gray-500"
-                }`}
+                className={`w-4 h-4 md:w-6 md:h-6 lg:w-8 lg:h-8 ${i < testimonial.rating ? "text-white" : "text-gray-500"
+                  }`}
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >

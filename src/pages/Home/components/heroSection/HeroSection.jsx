@@ -8,7 +8,7 @@ const HeroSection = ({
   backgroundImage = "/3d-network-communications-background-with-glowing-particles-conn.png",
 }) => {
   return (
-    <section className="relative w-full min-h-screen flex flex-col md:flex-row items-center justify-between p-8 md:p-12 lg:p-16 xl:p-20 overflow-hidden">
+    <section className="relative w-full min-h-screen flex flex-col justify-center md:flex-row items-center md:justify-between p-8 md:p-12 lg:p-16 xl:p-20 overflow-hidden">
       {/* Animated Background Image */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
         <img
@@ -20,15 +20,15 @@ const HeroSection = ({
       </div>
 
       {/* Text Content - Left Side */}
-      <div className="relative z-10 w-full mt-20 md:mt-32 lg:mt-40 xl:mt-48 mb-12 md:mb-0 md:pr-8">
-        <h4 className="font-normal font-poppins mb-4 md:mb-6 text-lg md:text-xl lg:text-2xl 2xl:text-3xl 3xl:text-4xl 4xl:text-5xl 5xl:text-6xl 6xl:text-7xl bg-gradient-to-b text-white bg-clip-text text-transparent">
+      <div className="relative z-10 w-full text-center md:text-left mt-20 md:mt-0 mb-12 md:mb-0 md:pr-8">
+        <h4 className="font-normal font-poppins mb-4 md:mb-6 text-2xl md:text-xl lg:text-2xl 2xl:text-3xl 3xl:text-4xl 4xl:text-5xl 5xl:text-6xl 6xl:text-7xl bg-gradient-to-b text-white bg-clip-text text-transparent">
           {title || ""}
         </h4>
-        <div className="font-bebas font-bold 2xl:text-7xl 3xl:text-7xl 4xl:text-8xl 5xl:text-9xl 6xl:text-[12rem] leading-[1.1] md:leading-[1.2] uppercase mb-8 md:mb-12 bg-gradient-to-b from-[#c5cedf] to-[#84aaf7] bg-clip-text text-transparent">
+        <div className="font-bebas font-bold text-5xl md:text-6xl lg:text-7xl 2xl:text-7xl 3xl:text-7xl 4xl:text-8xl 5xl:text-9xl 6xl:text-[12rem] leading-[1.1] md:leading-[1.2] uppercase mb-8 md:mb-12 bg-gradient-to-b from-[#c5cedf] to-[#84aaf7] bg-clip-text text-transparent">
           {heading || ""}
         </div>
-        <div className="rounded-[20px] md:w-2/3">
-          <p className="font-poppins font-normal text-white text-base md:text-lg lg:text-xl 
+        <div className="rounded-[20px] md:w-2/3 mx-auto md:mx-0">
+          <p className="font-poppins font-normal text-white text-lg md:text-lg lg:text-xl 
            3xl:text-4xl 4xl:text-5xl 5xl:text-6xl 6xl:text-7xl leading-relaxed md:leading-loose">
             {description || ""}
           </p>

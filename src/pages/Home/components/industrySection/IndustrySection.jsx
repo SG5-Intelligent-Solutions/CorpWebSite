@@ -1,7 +1,7 @@
 const IndustrySection = ({ title, subTitle, children, backgroundImage }) => {
   return (
     <section className="relative w-full py-8 sm:py-12 lg:py-16 px-0 4xl:px-20 mt-10">
-      {/* Background */}
+      {/* Background Image */}
       <div
         className="absolute inset-0 bg-no-repeat bg-right-top z-0"
         style={{
@@ -9,6 +9,9 @@ const IndustrySection = ({ title, subTitle, children, backgroundImage }) => {
           backgroundSize: "contain",
         }}
       />
+
+      {/* Gradient Overlay - Black to Bluish gradient */}
+      <div className="absolute inset-0 z-10 [background:linear-gradient(180deg,rgba(0,0,0,0.9)_0%,rgba(0,0,0,0.7)_25%,rgba(0,0,0,0.4)_50%,rgba(119,140,183,0.3)_75%,rgba(119,140,183,0.5)_100%)]" />
 
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 py-6 md:py-8 lg:py-10 z-20 relative mb-8 md:mb-12">

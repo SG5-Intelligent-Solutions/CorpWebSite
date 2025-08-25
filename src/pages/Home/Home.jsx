@@ -11,10 +11,33 @@ import { useEffect, useState } from "react";
 
 export const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const totalSlides = Math.ceil(cardsData.length / 3);
+  const [cardsPerView, setCardsPerView] = useState(3);
 
   useEffect(() => {
-    // Auto-rotate carousel every 4 seconds
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setCardsPerView(1);
+      } else if (window.innerWidth < 1024) {
+        setCardsPerView(2);
+      } else {
+        setCardsPerView(3);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const totalSlides = Math.ceil(cardsData.length / cardsPerView);
+
+  useEffect(() => {
+    if (currentSlide >= totalSlides) {
+      setCurrentSlide(0);
+    }
+  }, [totalSlides, currentSlide]);
+
+  useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % totalSlides);
     }, 4000);
@@ -23,8 +46,8 @@ export const Home = () => {
   }, [totalSlides]);
 
   const getVisibleCards = () => {
-    const startIndex = currentSlide * 3;
-    return cardsData.slice(startIndex, startIndex + 3);
+    const startIndex = currentSlide * cardsPerView;
+    return cardsData.slice(startIndex, startIndex + cardsPerView);
   };
 
   return (
@@ -103,10 +126,11 @@ export const Home = () => {
                 {getVisibleCards().map((card, index) => (
                   <div
                     key={`${currentSlide}-${index}`}
-                    className={`h-full transition-all duration-500 ease-in-out ${index === 1
-                        ? 'transform -translate-y-8 z-10' // Center card elevated
-                        : 'z-0'
-                      }`}
+                    className={`h-full transition-all duration-500 ease-in-out ${
+                      cardsPerView === 3 && index === 1
+                        ? "transform -translate-y-8 z-10" // Center card elevated
+                        : "z-0"
+                    }`}
                   >
                     <IndustrySolutionCard {...card} />
                   </div>
