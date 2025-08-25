@@ -1,6 +1,3 @@
-import React from "react";
-import { FrameWrapperByAnima } from "./sections/FrameWrapperByAnima";
-import { FooterByAnima } from "./sections/FooterByAnima";
 import { Input } from "../../components/ui/input";
 import { Textarea } from "../../components/ui/textarea";
 import { Button } from "../../components/ui/button";
@@ -15,8 +12,6 @@ const textareaClass =
 export const Contact = () => {
   return (
     <main className="bg-black flex flex-col items-center w-full min-h-screen">
-      <FrameWrapperByAnima />
-      
       <div className="relative w-full flex-1">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
@@ -57,8 +52,6 @@ export const Contact = () => {
           </Button>
         </div>
       </div>
-
-      <FooterByAnima />
     </main>
   );
 };

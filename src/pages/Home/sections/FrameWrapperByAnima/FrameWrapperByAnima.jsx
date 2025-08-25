@@ -1,5 +1,4 @@
 import { ChevronRightIcon } from "lucide-react";
-import React from "react";
 import { Button } from "../../../../components/ui/button";
 import {
   NavigationMenu,
@@ -7,7 +6,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "../../../../components/ui/navigation-menu";
-import { Link } from "react-router-dom";  
+import { Link } from "react-router-dom";
 
 export const FrameWrapperByAnima = () => {
   const navItems = [
@@ -32,12 +31,12 @@ export const FrameWrapperByAnima = () => {
         <NavigationMenu className="flex-grow flex justify-center flex-wrap">
           <NavigationMenuList className="flex gap-3 md:gap-10">
             {navItems.map((item, index) => (
-            <NavigationMenuItem key={index}>
-            <NavigationMenuLink as="a" href={item.path} className="[font-family:'DM_Sans',Helvetica] font-bold text-white text-sm md:text-xl hover:text-[#a1c0ff] transition-colors cursor-pointer">
-              {item.name}
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-          
+              <NavigationMenuItem key={index}>
+                <NavigationMenuLink as="a" href={item.path} className="[font-family:'DM_Sans',Helvetica] font-bold text-white text-sm md:text-xl hover:text-[#a1c0ff] transition-colors cursor-pointer">
+                  {item.name}
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+
             ))}
           </NavigationMenuList>
         </NavigationMenu>

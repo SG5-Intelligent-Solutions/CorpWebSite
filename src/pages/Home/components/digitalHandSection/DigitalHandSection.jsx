@@ -1,5 +1,3 @@
-import React from "react";
-
 const DigitalHandSection = ({
   videoSrc = "/Hand.mp4",
   heading = (
@@ -21,7 +19,6 @@ const DigitalHandSection = ({
   custom development, we provide tailored services that meet the 
   evolving needs of diverse industries.`,
 }) => {
-  console.log(window.innerWidth);
   return (
     <section className="relative w-full mt-10 sm:mt-16 md:mt-20 px-4 sm:px-6 md:px-8 overflow-hidden">
       <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-8 md:gap-12">

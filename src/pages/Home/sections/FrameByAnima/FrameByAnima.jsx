@@ -1,4 +1,4 @@
-import { ArrowRight, ChevronRight, PlayIcon } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 
 export const FrameByAnima = () => {
@@ -83,6 +83,7 @@ export const FrameByAnima = () => {
 
   // State for tracking current industry index
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isCompleted, setIsCompleted] = useState(false);
   const currentIndustry = industriesData[currentIndex];
 
   // Slider reference and state
@@ -92,11 +93,7 @@ export const FrameByAnima = () => {
   const [sliderWidth, setSliderWidth] = useState(0);
   const [startPosition, setStartPosition] = useState(0);
 
-  // Refs for wave animation
-  const canvasRef = useRef(null);
-  const animationFrameRef = useRef(null);
-
-  // Calculate position for the slider indicator
+  // Calculate position for the slider indicator (centered arrow)
   const calculateThumbPosition = (index) => {
     const position = index / (industriesData.length - 1);
     return position * 100;
@@ -109,116 +106,20 @@ export const FrameByAnima = () => {
     }
   }, []);
 
-  // Wave animation setup
+  // Check if slider is completed
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext("2d");
-    const canvasWidth = canvas.width;
-    const canvasHeight = canvas.height;
-
-    // Set canvas dimensions to match container size
-    const resizeCanvas = () => {
-      const container = canvas.parentElement;
-      if (container) {
-        canvas.width = container.offsetWidth;
-        canvas.height = container.offsetHeight;
-      }
-    };
-
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
-
-    // Wave parameters
-    const waves = [
-      {
-        amplitude: 20,
-        frequency: 0.02,
-        speed: 0.03,
-        color: "rgba(161, 192, 255, 0.3)",
-      },
-      {
-        amplitude: 15,
-        frequency: 0.03,
-        speed: 0.02,
-        color: "rgba(79, 70, 229, 0.2)",
-      },
-      {
-        amplitude: 10,
-        frequency: 0.04,
-        speed: 0.01,
-        color: "rgba(59, 130, 246, 0.15)",
-      },
-    ];
-
-    let time = 0;
-
-    // Animation function
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      waves.forEach((wave) => {
-        drawWave(
-          ctx,
-          canvas.width,
-          canvas.height,
-          wave.amplitude,
-          wave.frequency,
-          time * wave.speed,
-          wave.color
-        );
-      });
-
-      time += 1;
-      animationFrameRef.current = requestAnimationFrame(animate);
-    };
-
-    // Draw a single wave
-    const drawWave = (
-      ctx,
-      width,
-      height,
-      amplitude,
-      frequency,
-      phase,
-      color
-    ) => {
-      ctx.beginPath();
-      ctx.moveTo(0, height / 2);
-
-      for (let x = 0; x < width; x++) {
-        const y = height / 2 + amplitude * Math.sin(x * frequency + phase);
-        ctx.lineTo(x, y);
-      }
-
-      ctx.lineTo(width, height);
-      ctx.lineTo(0, height);
-      ctx.closePath();
-
-      ctx.fillStyle = color;
-      ctx.fill();
-    };
-
-    animate();
-
-    // Cleanup function
-    return () => {
-      window.removeEventListener("resize", resizeCanvas);
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
-    };
-  }, []);
+    setIsCompleted(currentIndex === industriesData.length - 1);
+  }, [currentIndex, industriesData.length]);
 
   // Handle drag start
   const handleDragStart = (e) => {
     setIsDragging(true);
     setStartPosition(e.clientX || (e.touches && e.touches[0].clientX));
     document.addEventListener("mousemove", handleDrag);
-    document.addEventListener("touchmove", handleDrag);
+    document.addEventListener("touchmove", handleDrag, { passive: false });
     document.addEventListener("mouseup", handleDragEnd);
     document.addEventListener("touchend", handleDragEnd);
+    e.preventDefault();
   };
 
   // Handle drag
@@ -235,6 +136,7 @@ export const FrameByAnima = () => {
     if (newIndex !== currentIndex) {
       setCurrentIndex(newIndex);
     }
+    e.preventDefault();
   };
 
   // Handle drag end
@@ -259,32 +161,12 @@ export const FrameByAnima = () => {
     setCurrentIndex(newIndex);
   };
 
-  // Go to previous/next industry
-  const goToPrevious = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? industriesData.length - 1 : prevIndex - 1
-    );
-  };
-
-  const goToNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === industriesData.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
   return (
     <section className="relative w-full py-24 overflow-hidden bg-black">
-      {/* Animated background with canvas */}
+      {/* Animated background with video */}
       <div className="absolute inset-0 w-full h-full z-0">
-        {/* <div 
-          className="absolute inset-0 w-full h-full bg-cover bg-center opacity-50"
-          style={{
-            backgroundImage: `url('/sg5Bg.mp4')`,
-          }}
-          aria-hidden="true"
-        /> */}
         <video
-          className="w-full  object-contain"
+          className="w-full h-full object-cover opacity-60"
           autoPlay
           muted
           loop
@@ -292,11 +174,6 @@ export const FrameByAnima = () => {
         >
           <source src="/sg5Bg.mp4" type="video/mp4" />
         </video>
-        {/* <canvas 
-          ref={canvasRef} 
-          className="absolute inset-0 w-full h-full opacity-40" 
-          aria-hidden="true"
-        /> */}
       </div>
 
       {/* Top gradient overlay */}
@@ -313,7 +190,7 @@ export const FrameByAnima = () => {
             Transforming Core Industries Through Innovation
           </h2>
           <div className="mt-4 md:mt-0">
-            <span className="text-[#A1C0FF] font-inter font-medium text-sm  md:text-base  4xl:text-lg 5xl:text-3xl 6xl:text-4xl  text-right">
+            <span className="text-[#A1C0FF] font-inter font-medium text-sm md:text-base 4xl:text-lg 5xl:text-3xl 6xl:text-4xl text-right">
               Industries We Serve
             </span>
           </div>
@@ -326,12 +203,12 @@ export const FrameByAnima = () => {
             <div className="w-full mx-auto rounded-2xl overflow-hidden">
               <div className="p-0 flex justify-center items-center">
                 <div
-                  className="relative aspect-video rounded-2xl bg-center bg-cover w-[730px] h-[30rem] "
+                  className="relative aspect-video rounded-2xl bg-center bg-cover w-[730px] h-[30rem] transition-all duration-700 ease-in-out"
                   style={{ backgroundImage: `url(${currentIndustry.image})` }}
                 >
-                  {/* Play button */}
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-5 bg-black bg-opacity-70 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-90 transition-all">
-                    <PlayIcon className="w-8 h-8 text-white" />
+                  {/* Play button with hover effects */}
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-5 bg-black bg-opacity-70 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-90 hover:scale-110 transition-all duration-300 group">
+                    <Play className="w-8 h-8 text-white group-hover:text-blue-300 transition-colors duration-300" />
                   </div>
                 </div>
               </div>
@@ -342,31 +219,31 @@ export const FrameByAnima = () => {
           <div className="relative md:w-[50%] text-white p-8 overflow-hidden">
             {/* Main content */}
             <div className="relative z-10">
-              {/* Energy title */}
-              <h2 className="md:text-5xl  font-poppins  font-medium bg-gradient-to-b from-white to-[#A1C0FF] bg-clip-text text-transparent mb-10">
+              {/* Industry title with animation */}
+              <h2 className="md:text-5xl font-poppins font-medium bg-gradient-to-b from-white to-[#A1C0FF] bg-clip-text text-transparent mb-10 transition-all duration-700 ease-in-out transform">
                 {currentIndustry.title}
               </h2>
 
               <div className="relative h-full rounded-lg">
-                {/* Challenges card - dark blue with border */}
-                <div className="min-h-[28rem] md:w-[20rem] h-full bg-navy-900 bg-opacity-40 backdrop-blur-md rounded-lg border-[5px] border-[#A1C0FF] p-6">
+                {/* Challenges card with enhanced styling */}
+                <div className="min-h-[28rem] md:w-[20rem] h-full bg-navy-900 bg-opacity-40 backdrop-blur-md rounded-lg border-[5px] border-[#A1C0FF] p-6 transition-all duration-500 ease-in-out hover:border-blue-300 hover:shadow-lg hover:shadow-blue-300/20">
                   <h3 className="font-poppins text-3xl font-medium text-[#FFFFFF] mb-6">
                     Key
                     <br />
                     Challenges:
                   </h3>
 
-                  <p className="font-poppins text-xl font-medium text-[#FFFFFF]">
+                  <p className="font-poppins text-xl font-medium text-[#FFFFFF] transition-all duration-500 ease-in-out">
                     {currentIndustry.challenges.description}
                   </p>
                 </div>
 
-                {/* Solutions card - light blue positioned to overlap */}
-                <div className="md:w-[22rem] h-[22rem] bg-blue-300 rounded-lg p-6 absolute left-1/3 -bottom-[10rem]">
+                {/* Solutions card with enhanced positioning and effects */}
+                <div className="md:w-[22rem] h-[22rem] bg-blue-300 rounded-lg p-6 absolute left-1/3 -bottom-[10rem] transition-all duration-500 ease-in-out hover:bg-blue-200 hover:shadow-lg hover:shadow-blue-400/30 hover:scale-105">
                   <h3 className="text-2xl font-poppins font-medium text-[#000000] mb-4">
                     SG5.ai <br/> Solutions
                   </h3>
-                  <p className="text-base font-poppins font-medium text-[#000000] ">
+                  <p className="text-base font-poppins font-medium text-[#000000] transition-all duration-300">
                     {currentIndustry.solutions.description}
                   </p>
                 </div>
@@ -375,62 +252,104 @@ export const FrameByAnima = () => {
           </div>
         </div>
 
-        {/* Swipe indicator */}
+        {/* Enhanced Swipe indicator */}
         <div className="flex flex-col items-center mt-16">
-          <p className="font-poppins text-xl font-medium text-[#A1C0FF] mb-4">
+          <p className="font-poppins text-xl font-medium text-[#A1C0FF] mb-4 transition-colors duration-300">
             Swipe to see more
           </p>
 
-          {/* Custom slider component */}
-          <div className="relative w-64 mb-6">
-            {/* Slider track */}
+          {/* Enhanced Custom slider component */}
+          <div className="relative w-80 mb-6">
+            {/* Slider track with enhanced styling */}
             <div
               ref={sliderRef}
-              className="relative w-full h-8 border border-white shadow-md shadow-blue-300 overflow-hidden cursor-pointer"
+              className="relative w-full h-12 bg-gray-800 rounded-full border-2 border-white shadow-lg shadow-blue-300/30 overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-blue-300/50"
               onClick={handleSliderClick}
             >
-              {/* Fill background */}
+              {/* Animated fill background */}
               <div
-                className="absolute inset-0 bg-blue-300"
+                className={`absolute inset-0 bg-gradient-to-r from-[#638dd1] to-[#387ff1] rounded-full transition-all duration-500 ease-out ${
+                  isCompleted ? 'shadow-inner shadow-green-400/50' : ''
+                }`}
                 style={{
                   width: `${calculateThumbPosition(currentIndex)}%`,
-                  transition: isDragging ? "none" : "width 0.3s ease",
+                  transition: isDragging ? "none" : "width 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
                 }}
               />
 
-              {/* Darker gradient overlay */}
+              {/* Progress sparkle effect */}
               <div
-                className="absolute inset-0 bg-gradient-to-r from-transparent to-blue-900"
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-full opacity-0 animate-pulse"
                 style={{
-                  opacity: 0.3,
-                  backgroundSize: `${
-                    100 - calculateThumbPosition(currentIndex)
-                  }% 100%`,
-                  backgroundPosition: "right center",
+                  width: `${calculateThumbPosition(currentIndex)}%`,
+                  animation: isCompleted ? 'pulse 1s infinite' : 'none',
                 }}
               />
 
-              {/* Slider thumb */}
+              {/* Completion celebration effect */}
+              {isCompleted && (
+                <div className="absolute inset-0 bg-gradient-to-r from-green-400/20 to-blue-400/20 rounded-full animate-pulse" />
+              )}
+
+              {/* Slider thumb - centered arrow */}
               <div
                 ref={thumbRef}
-                className="absolute top-1 cursor-grab active:cursor-grabbing z-20 flex items-center justify-center"
+                className={`absolute top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg cursor-grab active:cursor-grabbing z-20 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-xl ${
+                  isDragging ? 'scale-105 shadow-xl' : ''
+                } ${isCompleted ? 'bg-[#5482cb] shadow-green-400/50' : ''}`}
                 style={{
-                  left: `calc(${calculateThumbPosition(currentIndex)}% - ${
-                    currentIndex > 0 ? "12px" : "0px"
-                  })`,
-                  transition: isDragging ? "none" : "left 0.3s ease",
+                  left: `calc(${calculateThumbPosition(currentIndex)}% - 20px)`,
+                  transition: isDragging ? "none" : "left 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s ease",
                 }}
                 onMouseDown={handleDragStart}
                 onTouchStart={handleDragStart}
               >
                 <ArrowRight
                   size={20}
-                  className={`text-white stroke-2 ${
-                    currentIndex !== 0 && "-ml-3"
-                  }`}
+                  className={`transition-all duration-300 ${
+                    isCompleted ? 'text-white rotate-90' : 'text-[#4688f3]'
+                  } ${isDragging ? 'scale-110' : ''}`}
                 />
               </div>
+
+              {/* Progress indicators (dots) */}
+              <div className="absolute inset-0 flex items-center justify-between px-2 pointer-events-none">
+                {industriesData.map((_, index) => (
+                  <div
+                    key={index}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      index <= currentIndex ? 'bg-white shadow-sm' : 'bg-gray-500'
+                    }`}
+                    style={{
+                      transform: index === currentIndex ? 'scale(1.5)' : 'scale(1)',
+                    }}
+                  />
+                ))}
+              </div>
             </div>
+
+            {/* Progress text */}
+            <div className="flex justify-between items-center mt-4 text-sm text-gray-400">
+              <span className="transition-colors duration-300">
+                {currentIndex + 1} of {industriesData.length}
+              </span>
+            </div>
+          </div>
+
+          {/* Industry navigation dots */}
+          <div className="flex space-x-3 mt-4">
+            {industriesData.map((industry, index) => (
+              <button
+                key={industry.id}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentIndex
+                    ? 'bg-blue-400 shadow-lg shadow-blue-400/50 scale-125'
+                    : 'bg-gray-600 hover:bg-gray-500'
+                }`}
+                aria-label={`Go to ${industry.title}`}
+              />
+            ))}
           </div>
         </div>
       </div>
